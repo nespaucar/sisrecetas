@@ -227,11 +227,11 @@
 	</div>
 {!! Form::close() !!}
 <script type="text/javascript">
+var selectunidades = "";
+@foreach($unidades as $uv)
+	selectunidades += "<option value='{{$uv->id}}'>{{$uv->nombre}}</option>";
+@endforeach
 $(document).ready(function() {
-	var selectunidades = "";
-	@foreach($unidades as $uv)
-		selectunidades += "<option value='{{$uv->id}}'>{{$uv->nombre}}</option>";
-	@endforeach
 	$(".closdat").remove();
     $(".modal-title").append('<button type="button" class="close closdat" onclick="$(this).parent().parent().parent().parent().parent().modal(\'hide\')" title="Cerrar"><i style="font-weight:bold;color:red; font-weight: bold;" class="glyphicon glyphicon-remove-circle"></i></button>');
 	configurarAnchoModal('1650');
@@ -297,7 +297,7 @@ $(document).on("click", "#btningredientenuevo", function(e) {
 		});
 
 		if(esta == false) {
-			$("#cuerpo").append('<tr><td class="num"></td><td><input class="cant numerin form-control input-sm" type="text"/><input type="hidden" class="inid" value="0"/><input type="hidden" class="nomb" value="' + valor + '"/></td>' + selectunidades + '<td>' + valor + '</td><td style="text-align:center;"><button class="remove btn btn-xs btn-danger"><i class="fa fa-remove"></i></button></td></tr>');
+			$("#cuerpo").append('<tr><td class="num"></td><td><input class="cant numerin form-control input-sm" type="text"/><input type="hidden" class="inid" value="0"/><input type="hidden" class="nomb" value="' + valor + '"/></td><td><select class="form-control unity">' + selectunidades + '</select></td><td>' + valor + '</td><td style="text-align:center;"><button class="remove btn btn-xs btn-danger"><i class="fa fa-remove"></i></button></td></tr>');
 			ordenarnumeros();
 			$('.numerin').inputmask('decimal', { radixPoint: ".", autoGroup: true, groupSeparator: "", groupSize: 3, digits: 2 });
 		} else {
